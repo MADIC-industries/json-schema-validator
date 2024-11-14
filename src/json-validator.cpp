@@ -1088,8 +1088,10 @@ class object : public schema
 			if (!a_prop_or_pattern_matched && additionalProperties_) {
 				first_error_handler additional_prop_err;
 				additionalProperties_->validate(ptr / p.key(), p.value(), patch, additional_prop_err);
-				if (additional_prop_err)
+				if (additional_prop_err) {
+					patch.remove((ptr / p.key()));
 					e.error(ptr, instance, "validation failed for additional property '" + p.key() + "': " + additional_prop_err.message_);
+				}
 			}
 		}
 
