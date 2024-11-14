@@ -175,6 +175,13 @@ if (JSON_VALIDATOR_INSTALL)
             INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/nlohmann_json_schema_validator
             )
 
+    # Pkg config
+    configure_file(
+      "${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME}.pc.in"
+      "${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pc"
+      @ONLY
+    )
+
     # Install Targets files
     export(EXPORT nlohmann_json_schema_validatorTargets
             NAMESPACE nlohmann_json_schema_validator::
@@ -193,6 +200,9 @@ if (JSON_VALIDATOR_INSTALL)
             DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/nlohmann_json_schema_validator
             COMPONENT nlohmann_json_schema_validator_Development
             )
+    install(FILES
+            ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.pc
+            DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
 endif ()
 
 # Handle the project being included externally (e.g. FetchContent)

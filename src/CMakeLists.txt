@@ -20,6 +20,7 @@ if (JSON_VALIDATOR_SHARED_LIBS)
             -DJSON_SCHEMA_VALIDATOR_EXPORTS)
 endif ()
 
+
 # TODO: Consider setting minimum cxx standard instead
 target_compile_features(nlohmann_json_schema_validator PUBLIC
         cxx_range_for) # for C++11 - flags
